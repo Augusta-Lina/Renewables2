@@ -1,0 +1,128 @@
+{
+  "overall": {
+    "mae_tso": 8.86,
+    "mae_our_model": 10.48
+  },
+  "hourly": [
+    {
+      "hour": 0,
+      "mae_tso": 8.86,
+      "mae_our_model": 11.74
+    },
+    {
+      "hour": 1,
+      "mae_tso": 8.91,
+      "mae_our_model": 10.6
+    },
+    {
+      "hour": 2,
+      "mae_tso": 9.0,
+      "mae_our_model": 10.07
+    },
+    {
+      "hour": 3,
+      "mae_tso": 8.67,
+      "mae_our_model": 9.84
+    },
+    {
+      "hour": 4,
+      "mae_tso": 8.34,
+      "mae_our_model": 11.26
+    },
+    {
+      "hour": 5,
+      "mae_tso": 8.09,
+      "mae_our_model": 11.06
+    },
+    {
+      "hour": 6,
+      "mae_tso": 8.45,
+      "mae_our_model": 10.46
+    },
+    {
+      "hour": 7,
+      "mae_tso": 8.8,
+      "mae_our_model": 10.25
+    },
+    {
+      "hour": 8,
+      "mae_tso": 8.43,
+      "mae_our_model": 10.06
+    },
+    {
+      "hour": 9,
+      "mae_tso": 8.87,
+      "mae_our_model": 10.4
+    },
+    {
+      "hour": 10,
+      "mae_tso": 8.93,
+      "mae_our_model": 10.75
+    },
+    {
+      "hour": 11,
+      "mae_tso": 9.29,
+      "mae_our_model": 11.36
+    },
+    {
+      "hour": 12,
+      "mae_tso": 9.1,
+      "mae_our_model": 11.29
+    },
+    {
+      "hour": 13,
+      "mae_tso": 8.92,
+      "mae_our_model": 10.45
+    },
+    {
+      "hour": 14,
+      "mae_tso": 9.02,
+      "mae_our_model": 10.29
+    },
+    {
+      "hour": 15,
+      "mae_tso": 9.12,
+      "mae_our_model": 10.64
+    },
+    {
+      "hour": 16,
+      "mae_tso": 9.47,
+      "mae_our_model": 11.18
+    },
+    {
+      "hour": 17,
+      "mae_tso": 10.25,
+      "mae_our_model": 10.49
+    },
+    {
+      "hour": 18,
+      "mae_tso": 9.95,
+      "mae_our_model": 11.11
+    },
+    {
+      "hour": 19,
+      "mae_tso": 9.25,
+      "mae_our_model": 10.74
+    },
+    {
+      "hour": 20,
+      "mae_tso": 8.58,
+      "mae_our_model": 9.11
+    },
+    {
+      "hour": 21,
+      "mae_tso": 7.95,
+      "mae_our_model": 9.45
+    },
+    {
+      "hour": 22,
+      "mae_tso": 7.89,
+      "mae_our_model": 9.44
+    },
+    {
+      "hour": 23,
+      "mae_tso": 8.53,
+      "mae_our_model": 9.49
+    }
+  ]
+}

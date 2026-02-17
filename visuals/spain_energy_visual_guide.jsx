@@ -1,0 +1,523 @@
+import { useState } from "react";
+
+const tabs = ["Data Structure", "The Pivot", "What is TSO?", "Lag Features & Models", "TSO Correction"];
+
+const cellStyle = (bg = "#fff", bold = false, mono = false) => ({
+  padding: "6px 10px",
+  border: "1px solid #d1d5db",
+  backgroundColor: bg,
+  fontWeight: bold ? 700 : 400,
+  fontFamily: mono ? "'Courier New', monospace" : "'Georgia', serif",
+  fontSize: "13px",
+  whiteSpace: "nowrap",
+});
+
+const SectionTitle = ({ children }) => (
+  <h2 style={{ fontFamily: "'Georgia', serif", fontSize: "22px", fontWeight: 700, color: "#1a1a2e", margin: "28px 0 12px", borderBottom: "2px solid #e94560", paddingBottom: "6px", display: "inline-block" }}>{children}</h2>
+);
+
+const Note = ({ children, color = "#fef3c7", border = "#f59e0b" }) => (
+  <div style={{ background: color, border: `1px solid ${border}`, borderRadius: "8px", padding: "12px 16px", margin: "12px 0", fontFamily: "'Georgia', serif", fontSize: "14px", lineHeight: 1.6 }}>{children}</div>
+);
+
+const Tag = ({ children, bg = "#e0e7ff", color = "#3730a3" }) => (
+  <span style={{ background: bg, color, padding: "2px 8px", borderRadius: "4px", fontSize: "12px", fontWeight: 600, fontFamily: "'Courier New', monospace", marginRight: "4px" }}>{children}</span>
+);
+
+function DataStructureTab() {
+  return (
+    <div>
+      <SectionTitle>Energy Dataset — energy_dataset.csv</SectionTitle>
+      <p style={{ fontFamily: "'Georgia', serif", fontSize: "14px", color: "#374151", lineHeight: 1.7, margin: "0 0 16px" }}>
+        <strong>One row = one hour for the entire country of Spain.</strong> 35,064 rows × 29 columns. Think of it as Spain's national electrical dashboard, sampled every hour for 4 years.
+      </p>
+
+      <div style={{ overflowX: "auto", marginBottom: "20px" }}>
+        <table style={{ borderCollapse: "collapse", fontSize: "13px" }}>
+          <thead>
+            <tr>
+              <th style={cellStyle("#1a1a2e", true)} colSpan={1}><span style={{ color: "#fff" }}>Time</span></th>
+              <th style={cellStyle("#e94560", true)} colSpan={3}><span style={{ color: "#fff" }}>Generation (20 cols)</span></th>
+              <th style={cellStyle("#0f3460", true)} colSpan={2}><span style={{ color: "#fff" }}>Load / Demand</span></th>
+              <th style={cellStyle("#533483", true)} colSpan={2}><span style={{ color: "#fff" }}>Price</span></th>
+              <th style={cellStyle("#16697a", true)} colSpan={2}><span style={{ color: "#fff" }}>TSO Forecasts</span></th>
+            </tr>
+            <tr>
+              {["time", "gen_solar", "gen_wind", "gen_gas ...", "load_forecast", "load_actual", "price_day_ahead", "price_actual", "fcst_solar", "fcst_wind"].map((h, i) => (
+                <th key={i} style={cellStyle("#f3f4f6", true, true)}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ["2015-01-01 00:00", "49", "6378", "4844 ...", "26118", "25385", "50.10", "65.41", "17", "6436"],
+              ["2015-01-01 01:00", "50", "5890", "5196 ...", "24934", "24382", "48.10", "64.92", "16", "5856"],
+              ["2015-01-01 02:00", "50", "5461", "4857 ...", "23515", "22734", "47.33", "64.48", "8", "5454"],
+            ].map((row, ri) => (
+              <tr key={ri}>
+                {row.map((c, ci) => (
+                  <td key={ci} style={cellStyle(ci === 0 ? "#f0f0f0" : "#fff", false, ci === 0)}>{c}</td>
+                ))}
+              </tr>
+            ))}
+            <tr><td colSpan={10} style={{ ...cellStyle("#fafafa"), textAlign: "center", color: "#9ca3af" }}>... 35,064 hourly rows total ...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "24px" }}>
+        <Tag bg="#fce4ec" color="#c62828">🔴 8 columns to drop (always zero/null)</Tag>
+        <Tag bg="#e8f5e9" color="#2e7d32">🟢 ~36 missing values in load_actual (tiny)</Tag>
+      </div>
+
+      <SectionTitle>Weather Dataset — weather_features.csv</SectionTitle>
+      <p style={{ fontFamily: "'Georgia', serif", fontSize: "14px", color: "#374151", lineHeight: 1.7, margin: "0 0 16px" }}>
+        <strong>One row = one hour × one city.</strong> 5 cities means <strong>5 rows per timestep</strong>. 178,396 rows × 17 columns. Same time period, but the granularity is city-level.
+      </p>
+
+      <div style={{ overflowX: "auto", marginBottom: "16px" }}>
+        <table style={{ borderCollapse: "collapse", fontSize: "13px" }}>
+          <thead>
+            <tr>
+              <th style={cellStyle("#1a1a2e", true)}><span style={{ color: "#fff" }}>dt_iso</span></th>
+              <th style={cellStyle("#e94560", true)}><span style={{ color: "#fff" }}>city</span></th>
+              <th style={cellStyle("#0f3460", true)} colSpan={5}><span style={{ color: "#fff" }}>Numeric Weather (11 cols)</span></th>
+              <th style={cellStyle("#533483", true)} colSpan={2}><span style={{ color: "#fff" }}>Categorical</span></th>
+            </tr>
+            <tr>
+              {["dt_iso", "city_name", "temp (K)", "humidity", "wind_spd", "clouds", "rain_1h ...", "weather_main", "weather_desc"].map((h, i) => (
+                <th key={i} style={cellStyle("#f3f4f6", true, true)}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ["2015-01-01 00:00", "Valencia", "270.5", "77", "1", "0", "0.0", "clear", "sky is clear"],
+              ["2015-01-01 00:00", "Madrid", "269.2", "82", "2", "20", "0.0", "clouds", "few clouds"],
+              ["2015-01-01 00:00", "Bilbao", "275.1", "90", "4", "75", "0.2", "rain", "light rain"],
+              ["2015-01-01 00:00", "Barcelona", "272.8", "85", "3", "40", "0.0", "clouds", "scattered"],
+              ["2015-01-01 00:00", "Seville", "271.0", "79", "1", "0", "0.0", "clear", "sky is clear"],
+            ].map((row, ri) => (
+              <tr key={ri} style={{ background: ri % 2 === 0 ? "#fff" : "#fafafa" }}>
+                {row.map((c, ci) => (
+                  <td key={ci} style={cellStyle(ri % 2 === 0 ? "#fff" : "#fafafa", false, ci <= 1)}>{c}</td>
+                ))}
+              </tr>
+            ))}
+            <tr style={{ background: "#fff3cd" }}>
+              {["2015-01-01 01:00", "Valencia", "270.5", "77", "1", "0", "0.0", "clear", "sky is clear"].map((c, ci) => (
+                <td key={ci} style={cellStyle("#fff3cd", false, ci <= 1)}>{c}</td>
+              ))}
+            </tr>
+            <tr><td colSpan={9} style={{ ...cellStyle("#fafafa"), textAlign: "center", color: "#9ca3af" }}>... next 5 city rows for 01:00, then 02:00, etc ...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <Note>
+        <strong>Key insight:</strong> Every single timestamp in the weather data appears <strong>5 times</strong> — once per city. The highlighted yellow row shows the pattern restarting for the next hour. The energy data has that same timestamp appearing just <strong>once</strong>. That mismatch is why we need the pivot.
+      </Note>
+    </div>
+  );
+}
+
+function PivotTab() {
+  return (
+    <div>
+      <SectionTitle>The Pivot: Why & How</SectionTitle>
+      <p style={{ fontFamily: "'Georgia', serif", fontSize: "14px", color: "#374151", lineHeight: 1.7, margin: "0 0 16px" }}>
+        We can't merge 5 weather rows into 1 energy row. We need to reshape ("pivot") the weather data so that each city's measurements become their own columns. Here's what happens:
+      </p>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: "20px", alignItems: "center" }}>
+        {/* BEFORE */}
+        <div style={{ width: "100%", maxWidth: "600px" }}>
+          <div style={{ background: "#fee2e2", padding: "8px 16px", borderRadius: "8px 8px 0 0", fontWeight: 700, fontFamily: "'Georgia', serif", fontSize: "14px", color: "#991b1b" }}>
+            BEFORE: Weather (Long Format) — 178k rows
+          </div>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ borderCollapse: "collapse", width: "100%" }}>
+              <thead>
+                <tr>
+                  {["dt_iso", "city", "temp", "humidity", "wind_spd"].map(h => (
+                    <th key={h} style={cellStyle("#fecaca", true, true)}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["00:00", "Valencia", "270.5", "77", "1"],
+                  ["00:00", "Madrid", "269.2", "82", "2"],
+                  ["00:00", "Bilbao", "275.1", "90", "4"],
+                  ["00:00", "Barcelona", "272.8", "85", "3"],
+                  ["00:00", "Seville", "271.0", "79", "1"],
+                ].map((row, i) => (
+                  <tr key={i}><td style={cellStyle("#fff", false, true)}>{row[0]}</td><td style={cellStyle(["#dbeafe", "#dcfce7", "#fef3c7", "#f3e8ff", "#ffe4e6"][i], true, true)}>{row[1]}</td>{row.slice(2).map((c, j) => <td key={j} style={cellStyle(["#dbeafe", "#dcfce7", "#fef3c7", "#f3e8ff", "#ffe4e6"][i])}>{c}</td>)}</tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Arrow */}
+        <div style={{ fontSize: "32px", color: "#e94560", fontWeight: 700 }}>↓ PIVOT ↓</div>
+
+        {/* AFTER */}
+        <div style={{ width: "100%", maxWidth: "100%" }}>
+          <div style={{ background: "#dcfce7", padding: "8px 16px", borderRadius: "8px 8px 0 0", fontWeight: 700, fontFamily: "'Georgia', serif", fontSize: "14px", color: "#166534" }}>
+            AFTER: Weather (Wide Format) — 35k rows, ~55 columns
+          </div>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ borderCollapse: "collapse", width: "100%" }}>
+              <thead>
+                <tr>
+                  {["dt_iso", "temp_Valencia", "temp_Madrid", "temp_Bilbao", "temp_Barcelona", "temp_Seville", "humid_Valencia", "humid_Madrid", "..."].map(h => (
+                    <th key={h} style={cellStyle("#bbf7d0", true, true)}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style={cellStyle("#fff", false, true)}>00:00</td>
+                  <td style={cellStyle("#dbeafe")}>270.5</td>
+                  <td style={cellStyle("#dcfce7")}>269.2</td>
+                  <td style={cellStyle("#fef3c7")}>275.1</td>
+                  <td style={cellStyle("#f3e8ff")}>272.8</td>
+                  <td style={cellStyle("#ffe4e6")}>271.0</td>
+                  <td style={cellStyle("#dbeafe")}>77</td>
+                  <td style={cellStyle("#dcfce7")}>82</td>
+                  <td style={cellStyle("#f9fafb")}>...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Merge */}
+        <div style={{ fontSize: "24px", color: "#16697a", fontWeight: 700 }}>+ MERGE on timestamp →</div>
+
+        <div style={{ width: "100%", maxWidth: "100%" }}>
+          <div style={{ background: "#e0e7ff", padding: "8px 16px", borderRadius: "8px 8px 0 0", fontWeight: 700, fontFamily: "'Georgia', serif", fontSize: "14px", color: "#3730a3" }}>
+            FINAL: Merged Dataset — 35k rows, ~75+ columns
+          </div>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ borderCollapse: "collapse", width: "100%" }}>
+              <thead>
+                <tr>
+                  {["time", "load_actual", "price_actual", "gen_solar", "...", "temp_Madrid", "humidity_Madrid", "temp_Seville", "..."].map(h => (
+                    <th key={h} style={cellStyle("#c7d2fe", true, true)}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {["00:00", "25385", "65.41", "49", "...", "269.2", "82", "271.0", "..."].map((c, i) => (
+                    <td key={i} style={cellStyle(i < 5 ? "#fff" : "#f0fdf4", false, i === 0)}>{c}</td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <Note>
+        <strong>Why 55 weather columns?</strong> 11 numeric measurements × 5 cities = 55. The categorical <code>weather_main</code> could add more if one-hot encoded (e.g. <code>is_rain_Madrid</code>, <code>is_clear_Seville</code>).
+      </Note>
+    </div>
+  );
+}
+
+function TSOTab() {
+  return (
+    <div>
+      <SectionTitle>What is a TSO?</SectionTitle>
+      <p style={{ fontFamily: "'Georgia', serif", fontSize: "15px", color: "#374151", lineHeight: 1.8, margin: "0 0 20px" }}>
+        <strong>TSO = Transmission System Operator.</strong> For Spain, this is <strong>Red Eléctrica de España (REE)</strong>. Think of them as the air traffic controller of the electrical grid.
+      </p>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "16px", margin: "20px 0" }}>
+        {[
+          { title: "What they do", icon: "⚡", desc: "They balance supply and demand across the entire Spanish grid in real time. Every second, total generation must exactly match total consumption — otherwise blackouts or equipment damage." },
+          { title: "Why they forecast", icon: "🔮", desc: "To keep the grid stable, they predict tomorrow's demand and price hour-by-hour. Power plants need hours to start up, and electricity markets clear a day ahead. Bad forecasts = wasted energy or shortages." },
+          { title: "Their forecasts in our data", icon: "📊", desc: "The TSO publishes their predictions as 'day-ahead' forecasts. These are professional, state-of-the-art predictions made with proprietary models, historical data, and weather forecasts." },
+        ].map((card, i) => (
+          <div key={i} style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: "12px", padding: "20px", boxShadow: "0 1px 3px rgba(0,0,0,0.05)" }}>
+            <div style={{ fontSize: "28px", marginBottom: "8px" }}>{card.icon}</div>
+            <div style={{ fontFamily: "'Georgia', serif", fontWeight: 700, fontSize: "15px", color: "#1a1a2e", marginBottom: "8px" }}>{card.title}</div>
+            <div style={{ fontFamily: "'Georgia', serif", fontSize: "13px", color: "#4b5563", lineHeight: 1.7 }}>{card.desc}</div>
+          </div>
+        ))}
+      </div>
+
+      <SectionTitle>TSO Forecast Columns in Our Data</SectionTitle>
+      <div style={{ overflowX: "auto" }}>
+        <table style={{ borderCollapse: "collapse", width: "100%", marginBottom: "16px" }}>
+          <thead>
+            <tr>
+              <th style={cellStyle("#1a1a2e", true)}><span style={{ color: "#fff" }}>TSO Forecast Column</span></th>
+              <th style={cellStyle("#1a1a2e", true)}><span style={{ color: "#fff" }}>What It Predicts</span></th>
+              <th style={cellStyle("#1a1a2e", true)}><span style={{ color: "#fff" }}>Ground Truth Column</span></th>
+              <th style={cellStyle("#1a1a2e", true)}><span style={{ color: "#fff" }}>When Made</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ["total load forecast", "Total electrical demand (MW)", "total load actual", "Day before"],
+              ["price day ahead", "Electricity price (€/MWh)", "price actual", "Day before"],
+              ["forecast solar day ahead", "Solar generation (MW)", "generation solar", "Day before"],
+              ["forecast wind onshore day ahead", "Wind generation (MW)", "generation wind onshore", "Day before"],
+            ].map((row, i) => (
+              <tr key={i}>
+                <td style={cellStyle("#fff", false, true)}>{row[0]}</td>
+                <td style={cellStyle("#fff")}>{row[1]}</td>
+                <td style={cellStyle("#dcfce7", true, true)}>{row[2]}</td>
+                <td style={cellStyle("#fff")}>{row[3]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <Note>
+        <strong>The benchmark challenge:</strong> Questions B and C ask "can we beat the TSO?" So we measure the TSO's forecast error (e.g., MAE between <code>total load forecast</code> and <code>total load actual</code>), then see if our ML model's error is smaller. The TSO has professional meteorologists and decades of experience — beating them is a genuine achievement.
+      </Note>
+
+      <Note color="#ede9fe" border="#8b5cf6">
+        <strong>Using TSO forecasts as features:</strong> Here's the clever trick — we can use the TSO's own forecast as an <em>input feature</em> to our model. Our model then learns to <em>correct</em> the TSO's mistakes rather than forecast from scratch. This is almost always better than ignoring the TSO entirely.
+      </Note>
+    </div>
+  );
+}
+
+function LagTab() {
+  return (
+    <div>
+      <SectionTitle>What Are Lag Features?</SectionTitle>
+      <p style={{ fontFamily: "'Georgia', serif", fontSize: "14px", color: "#374151", lineHeight: 1.8, margin: "0 0 16px" }}>
+        A lag feature is simply a past value used as an input. "What was demand 24 hours ago?" is <code>load_lag_24</code>. The idea: today's 3 PM demand probably looks a lot like yesterday's 3 PM demand.
+      </p>
+
+      <div style={{ overflowX: "auto", marginBottom: "20px" }}>
+        <table style={{ borderCollapse: "collapse" }}>
+          <thead>
+            <tr>
+              {["time", "load_actual", "load_lag_24", "load_lag_168", "rolling_24h_mean"].map(h => (
+                <th key={h} style={cellStyle("#1a1a2e", true, true)}><span style={{ color: "#fff" }}>{h}</span></th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ["Jan 3 15:00", "31,200", "30,800 ← Jan 2 15:00", "31,500 ← Dec 27 15:00", "28,450"],
+              ["Jan 3 16:00", "32,100", "31,900 ← Jan 2 16:00", "32,400 ← Dec 27 16:00", "28,520"],
+            ].map((row, i) => (
+              <tr key={i}>
+                {row.map((c, j) => (
+                  <td key={j} style={cellStyle(j === 0 ? "#f3f4f6" : j === 2 ? "#dbeafe" : j === 3 ? "#dcfce7" : "#fff", false, j === 0)}>{c}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <Note color="#fef3c7" border="#f59e0b">
+        <strong>Critical rule for 24h-ahead forecasting:</strong> If you're predicting what happens at 3 PM tomorrow, you can only use data from <em>right now or earlier</em>. That means lags must be ≥ 24 hours. Using <code>load_lag_1</code> (1 hour ago) would be cheating — you won't have that value when making the real prediction.
+      </Note>
+
+      <SectionTitle>Which Models Need Lag Features?</SectionTitle>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "16px", margin: "16px 0" }}>
+        {[
+          {
+            model: "XGBoost / LightGBM",
+            icon: "🌲",
+            needsLags: true,
+            color: "#dcfce7",
+            border: "#16a34a",
+            explanation: "Tree-based models see each row independently — they have NO concept of time or sequence. If you don't explicitly create lag_24, lag_48, rolling_mean columns, the model has no way to know what happened in the past. It just sees a flat table of numbers.",
+            verdict: "MUST manually create lag features. The model is blind to time otherwise."
+          },
+          {
+            model: "RNN / LSTM / GRU",
+            icon: "🔄",
+            needsLags: false,
+            color: "#dbeafe",
+            border: "#2563eb",
+            explanation: "These are sequence models — you feed them a window of raw past values (e.g., the last 168 hours of load, weather, price) and they learn temporal patterns internally. Their hidden state acts as a learned memory. They figure out which past timesteps matter on their own.",
+            verdict: "Do NOT need manual lag features. Feed raw sequences instead. But you still need to respect the 24h gap (your input sequence must end 24h before the target)."
+          },
+          {
+            model: "Transformer",
+            icon: "🔷",
+            needsLags: false,
+            color: "#f3e8ff",
+            border: "#7c3aed",
+            explanation: "Transformers use self-attention to look at all positions in an input sequence simultaneously. Like LSTMs, they take raw sequences as input and learn which past timesteps are important via attention weights. They're particularly good at capturing long-range dependencies (e.g., same hour last week).",
+            verdict: "Do NOT need manual lag features. Feed raw sequences. Same 24h gap constraint applies."
+          },
+          {
+            model: "Linear Regression / Ridge / Lasso",
+            icon: "📏",
+            needsLags: true,
+            color: "#fef3c7",
+            border: "#d97706",
+            explanation: "Like tree models, linear models see each row independently and have no temporal awareness. They also can't capture non-linear relationships, so they need carefully engineered features.",
+            verdict: "MUST manually create lag features, and may also need interaction terms and non-linear transforms."
+          },
+        ].map((m, i) => (
+          <div key={i} style={{ background: m.color, border: `2px solid ${m.border}`, borderRadius: "12px", padding: "20px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
+              <span style={{ fontSize: "24px" }}>{m.icon}</span>
+              <span style={{ fontFamily: "'Georgia', serif", fontWeight: 700, fontSize: "17px", color: "#1a1a2e" }}>{m.model}</span>
+              <span style={{ marginLeft: "auto", background: m.needsLags ? "#fca5a5" : "#86efac", color: m.needsLags ? "#991b1b" : "#166534", padding: "2px 10px", borderRadius: "12px", fontSize: "12px", fontWeight: 700, fontFamily: "'Courier New', monospace" }}>
+                {m.needsLags ? "NEEDS LAG FEATURES" : "LEARNS FROM SEQUENCES"}
+              </span>
+            </div>
+            <p style={{ fontFamily: "'Georgia', serif", fontSize: "13px", color: "#374151", lineHeight: 1.7, margin: "0 0 8px" }}>{m.explanation}</p>
+            <div style={{ fontFamily: "'Georgia', serif", fontSize: "13px", fontWeight: 700, color: "#1a1a2e" }}>→ {m.verdict}</div>
+          </div>
+        ))}
+      </div>
+
+      <Note>
+        <strong>Practical note:</strong> Even though LSTMs/Transformers don't <em>need</em> manual lag features, they need more data engineering (creating fixed-length input sequences), longer training times, and GPUs. On a 35k-row tabular dataset like this, XGBoost with well-crafted lag features typically performs as well or better — and trains in seconds, not hours.
+      </Note>
+    </div>
+  );
+}
+
+function CorrectionTab() {
+  return (
+    <div>
+      <SectionTitle>The TSO Correction Strategy</SectionTitle>
+      <p style={{ fontFamily: "'Georgia', serif", fontSize: "14px", color: "#374151", lineHeight: 1.8, margin: "0 0 20px" }}>
+        Instead of predicting demand from scratch, we train a model to predict <strong>how wrong the TSO will be</strong>, then correct their forecast. This works because the TSO already captures 95%+ of the signal.
+      </p>
+
+      {/* Strategy comparison */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "20px", margin: "20px 0" }}>
+        <div style={{ border: "2px solid #d1d5db", borderRadius: "12px", padding: "20px", background: "#f9fafb" }}>
+          <div style={{ fontFamily: "'Georgia', serif", fontWeight: 700, fontSize: "16px", marginBottom: "12px", color: "#6b7280" }}>Approach 1: Direct Forecast</div>
+          <div style={{ fontFamily: "'Courier New', monospace", fontSize: "13px", lineHeight: 2, color: "#374151" }}>
+            <div>Target = <span style={{ background: "#dcfce7", padding: "2px 6px", borderRadius: "4px" }}>load_actual</span></div>
+            <div>Features = weather + time + lags</div>
+            <div style={{ marginTop: "8px", borderTop: "1px dashed #d1d5db", paddingTop: "8px" }}>
+              Model predicts: <strong>25,385 MW</strong>
+            </div>
+            <div style={{ color: "#6b7280", fontSize: "12px", marginTop: "4px" }}>
+              (must learn the entire demand signal from scratch)
+            </div>
+          </div>
+        </div>
+
+        <div style={{ border: "2px solid #e94560", borderRadius: "12px", padding: "20px", background: "#fff5f5" }}>
+          <div style={{ fontFamily: "'Georgia', serif", fontWeight: 700, fontSize: "16px", marginBottom: "12px", color: "#e94560" }}>Approach 2: TSO Correction ⭐</div>
+          <div style={{ fontFamily: "'Courier New', monospace", fontSize: "13px", lineHeight: 2, color: "#374151" }}>
+            <div>Target = <span style={{ background: "#fef3c7", padding: "2px 6px", borderRadius: "4px" }}>load_actual − load_forecast</span></div>
+            <div style={{ color: "#6b7280", fontSize: "11px" }}>(i.e., the TSO's error / residual)</div>
+            <div>Features = weather + time + lags</div>
+            <div style={{ marginTop: "8px", borderTop: "1px dashed #fca5a5", paddingTop: "8px" }}>
+              TSO says: 26,118 MW<br/>
+              Model predicts error: <strong>−733 MW</strong><br/>
+              Final = 26,118 + (−733) = <strong>25,385 MW</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <SectionTitle>Why Does This Work Better?</SectionTitle>
+      <div style={{ fontFamily: "'Georgia', serif", fontSize: "14px", color: "#374151", lineHeight: 1.8 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "12px", margin: "12px 0" }}>
+          {[
+            { title: "Easier learning target", desc: "Predicting a small residual (±500 MW) is much easier than predicting the full signal (18,000–41,000 MW). The model can focus on what the TSO gets wrong." },
+            { title: "Built-in domain knowledge", desc: "The TSO forecast already encodes weather forecasts, calendar effects, grid constraints, and decades of expertise. You get all of that for free." },
+            { title: "TSO errors have patterns", desc: "The TSO tends to make systematic mistakes — e.g., consistently underestimating demand on holiday weekends, or missing temperature extremes. ML can learn these patterns." },
+          ].map((item, i) => (
+            <div key={i} style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: "8px", padding: "16px" }}>
+              <div style={{ fontWeight: 700, marginBottom: "6px", color: "#1a1a2e" }}>{item.title}</div>
+              <div style={{ fontSize: "13px", color: "#4b5563", lineHeight: 1.6 }}>{item.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <SectionTitle>Concrete Example</SectionTitle>
+      <div style={{ overflowX: "auto" }}>
+        <table style={{ borderCollapse: "collapse", width: "100%", marginBottom: "16px" }}>
+          <thead>
+            <tr>
+              {["time", "TSO forecast", "actual", "TSO error", "Our correction", "Our prediction", "Who's closer?"].map(h => (
+                <th key={h} style={cellStyle("#1a1a2e", true, true)}><span style={{ color: "#fff" }}>{h}</span></th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ["Mon 08:00", "30,500", "31,200", "+700", "+620", "31,120", "Us ✅ (off by 80)"],
+              ["Mon 14:00", "33,000", "32,400", "−600", "−520", "32,480", "Us ✅ (off by 80)"],
+              ["Sun 04:00", "20,000", "19,800", "−200", "−300", "19,700", "TSO ✅ (off by 200 vs 100)"],
+            ].map((row, i) => (
+              <tr key={i}>
+                {row.map((c, j) => (
+                  <td key={j} style={cellStyle(j === 6 ? (c.includes("Us") ? "#dcfce7" : "#fef3c7") : "#fff", j === 6, j <= 0)}>{c}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <Note color="#ede9fe" border="#8b5cf6">
+        <strong>Key point:</strong> We don't need to beat the TSO on every single hour — we need to beat them <em>on average</em> across the test set. If our MAE is lower than the TSO's MAE overall, we've shown ML can add value to professional forecasting.
+      </Note>
+    </div>
+  );
+}
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const TabContent = [DataStructureTab, PivotTab, TSOTab, LagTab, CorrectionTab][activeTab];
+
+  return (
+    <div style={{ maxWidth: "900px", margin: "0 auto", padding: "20px", fontFamily: "'Georgia', serif", background: "#fafafa", minHeight: "100vh" }}>
+      <div style={{ textAlign: "center", marginBottom: "24px" }}>
+        <h1 style={{ fontSize: "26px", fontWeight: 700, color: "#1a1a2e", margin: "0 0 4px", letterSpacing: "-0.5px" }}>
+          Spain Energy Dataset — Visual Guide
+        </h1>
+        <p style={{ fontSize: "14px", color: "#6b7280", margin: 0 }}>Understanding the data, the pivot, TSO forecasts, and modeling strategy</p>
+      </div>
+
+      {/* Tabs */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", marginBottom: "24px", borderBottom: "2px solid #e5e7eb", paddingBottom: "0" }}>
+        {tabs.map((tab, i) => (
+          <button
+            key={i}
+            onClick={() => setActiveTab(i)}
+            style={{
+              padding: "10px 16px",
+              border: "none",
+              borderBottom: activeTab === i ? "3px solid #e94560" : "3px solid transparent",
+              background: activeTab === i ? "#fff" : "transparent",
+              color: activeTab === i ? "#e94560" : "#6b7280",
+              fontFamily: "'Georgia', serif",
+              fontSize: "13px",
+              fontWeight: activeTab === i ? 700 : 400,
+              cursor: "pointer",
+              transition: "all 0.2s",
+              borderRadius: "8px 8px 0 0",
+            }}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+
+      <div style={{ background: "#fff", borderRadius: "12px", padding: "24px", border: "1px solid #e5e7eb", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+        <TabContent />
+      </div>
+    </div>
+  );
+}
