@@ -78,7 +78,8 @@ function formatTime(time: string) {
   return `${day}d ${hour}h`;
 }
 
-export default function TFTChart({ data }: { data: TFTData }) {
+export default function TFTChart({ data, modelLabel }: { data: TFTData; modelLabel?: string }) {
+  const label = modelLabel || data.model.split("+")[0].split("(")[0].trim() || "Predicted";
   const config = TARGET_CONFIG[data.target] || {
     title: data.target,
     unit: "",
@@ -156,7 +157,7 @@ export default function TFTChart({ data }: { data: TFTData }) {
             }}
             formatter={(value, name) => {
               const labels: Record<string, string> = {
-                predicted: "TFT Predicted",
+                predicted: label,
                 actual: "Actual",
                 tso: "TSO Forecast",
               };
@@ -174,7 +175,7 @@ export default function TFTChart({ data }: { data: TFTData }) {
                     className="inline-block w-4 h-0.5"
                     style={{ backgroundColor: config.color }}
                   />
-                  TFT Predicted
+                  {label}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <span

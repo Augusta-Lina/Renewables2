@@ -7,6 +7,8 @@ const links = [
   { href: "/", label: "Feature Importance" },
   { href: "/forecasts", label: "DeepAR Forecasts" },
   { href: "/tft-forecasts", label: "TFT Forecasts" },
+  { href: "/patchtst-forecasts", label: "PatchTST" },
+  { href: "/stacking-forecasts", label: "Stacking" },
 ];
 
 export default function Nav() {

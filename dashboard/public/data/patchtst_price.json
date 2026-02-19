@@ -1,1024 +1,1024 @@
 {
   "target": "price",
-  "model": "TFT + XGBoost Residual Correction",
+  "model": "PatchTST + XGBoost (86 trees avg)",
   "prediction_length_hours": 24,
   "context_length_hours": 168,
   "metrics": {
-    "mae": 7.73,
-    "rmse": 10.28,
-    "mape": 14.69,
+    "mae": 5.06,
+    "rmse": 6.72,
+    "mape": 9.64,
     "tso_mae": 8.87,
     "tso_rmse": 11.9,
-    "raw_mae": 6.58,
-    "raw_rmse": 9.01
+    "raw_mae": 5.13,
+    "raw_rmse": 6.8
   },
   "sample_forecast": [
     {
       "time": "2018-01-10 00:00",
       "actual": 55.01,
-      "predicted": 49.63,
+      "predicted": 53.96,
       "tso": 56.1
     },
     {
       "time": "2018-01-10 01:00",
       "actual": 53.66,
-      "predicted": 47.46,
+      "predicted": 49.05,
       "tso": 51.41
     },
     {
       "time": "2018-01-10 02:00",
       "actual": 51.71,
-      "predicted": 45.08,
+      "predicted": 46.82,
       "tso": 47.38
     },
     {
       "time": "2018-01-10 03:00",
       "actual": 52.17,
-      "predicted": 49.8,
+      "predicted": 43.87,
       "tso": 47.59
     },
     {
       "time": "2018-01-10 04:00",
       "actual": 51.71,
-      "predicted": 48.37,
+      "predicted": 44.39,
       "tso": 51.61
     },
     {
       "time": "2018-01-10 05:00",
       "actual": 54.75,
-      "predicted": 53.81,
+      "predicted": 46.77,
       "tso": 69.13
     },
     {
       "time": "2018-01-10 06:00",
       "actual": 65.12,
-      "predicted": 59.49,
+      "predicted": 53.71,
       "tso": 74.9
     },
     {
       "time": "2018-01-10 07:00",
       "actual": 72.85,
-      "predicted": 60.42,
+      "predicted": 58.57,
       "tso": 75.67
     },
     {
       "time": "2018-01-10 08:00",
       "actual": 73.29,
-      "predicted": 73.12,
+      "predicted": 60.63,
       "tso": 76.24
     },
     {
       "time": "2018-01-10 09:00",
       "actual": 73.7,
-      "predicted": 72.72,
+      "predicted": 62.83,
       "tso": 73.7
     },
     {
       "time": "2018-01-10 10:00",
       "actual": 65.99,
-      "predicted": 74.46,
+      "predicted": 66.45,
       "tso": 72.45
     },
     {
       "time": "2018-01-10 11:00",
       "actual": 65.55,
-      "predicted": 65.32,
+      "predicted": 62.31,
       "tso": 69.95
     },
     {
       "time": "2018-01-10 12:00",
       "actual": 56.26,
-      "predicted": 65.12,
+      "predicted": 60.94,
       "tso": 66.23
     },
     {
       "time": "2018-01-10 13:00",
       "actual": 54.42,
-      "predicted": 62.25,
+      "predicted": 55.89,
       "tso": 61.17
     },
     {
       "time": "2018-01-10 14:00",
       "actual": 55.59,
-      "predicted": 59.83,
+      "predicted": 51.5,
       "tso": 59.45
     },
     {
       "time": "2018-01-10 15:00",
       "actual": 55.39,
-      "predicted": 58.22,
+      "predicted": 52.05,
       "tso": 58.18
     },
     {
       "time": "2018-01-10 16:00",
       "actual": 58.42,
-      "predicted": 57.1,
+      "predicted": 50.95,
       "tso": 60.42
     },
     {
       "time": "2018-01-10 17:00",
       "actual": 61.47,
-      "predicted": 61.55,
+      "predicted": 54.81,
       "tso": 69.93
     },
     {
       "time": "2018-01-10 18:00",
       "actual": 64.01,
-      "predicted": 57.19,
+      "predicted": 59.67,
       "tso": 75.0
     },
     {
       "time": "2018-01-10 19:00",
       "actual": 68.79,
-      "predicted": 47.87,
+      "predicted": 62.14,
       "tso": 75.67
     },
     {
       "time": "2018-01-10 20:00",
       "actual": 65.99,
-      "predicted": 52.03,
+      "predicted": 58.89,
       "tso": 70.08
     },
     {
       "time": "2018-01-10 21:00",
       "actual": 55.28,
-      "predicted": 49.98,
+      "predicted": 54.87,
       "tso": 64.91
     },
     {
       "time": "2018-01-10 22:00",
       "actual": 52.91,
-      "predicted": 40.61,
+      "predicted": 44.39,
       "tso": 59.49
     },
     {
       "time": "2018-01-10 23:00",
       "actual": 45.39,
-      "predicted": 33.15,
+      "predicted": 40.58,
       "tso": 71.61
     },
     {
       "time": "2018-01-11 00:00",
       "actual": 40.84,
-      "predicted": 32.68,
+      "predicted": 47.96,
       "tso": 68.71
     },
     {
       "time": "2018-01-11 01:00",
       "actual": 38.45,
-      "predicted": 36.32,
+      "predicted": 40.97,
       "tso": 67.64
     },
     {
       "time": "2018-01-11 02:00",
       "actual": 38.6,
-      "predicted": 37.03,
+      "predicted": 38.73,
       "tso": 66.53
     },
     {
       "time": "2018-01-11 03:00",
       "actual": 38.58,
-      "predicted": 37.75,
+      "predicted": 37.13,
       "tso": 62.45
     },
     {
       "time": "2018-01-11 04:00",
       "actual": 41.77,
-      "predicted": 42.72,
+      "predicted": 36.77,
       "tso": 59.2
     },
     {
       "time": "2018-01-11 05:00",
       "actual": 47.04,
-      "predicted": 48.14,
+      "predicted": 42.77,
       "tso": 59.2
     },
     {
       "time": "2018-01-11 06:00",
       "actual": 57.74,
-      "predicted": 54.91,
+      "predicted": 48.55,
       "tso": 59.52
     },
     {
       "time": "2018-01-11 07:00",
       "actual": 63.98,
-      "predicted": 59.07,
+      "predicted": 59.25,
       "tso": 59.2
     },
     {
       "time": "2018-01-11 08:00",
       "actual": 65.4,
-      "predicted": 65.7,
+      "predicted": 61.36,
       "tso": 64.18
     },
     {
       "time": "2018-01-11 09:00",
       "actual": 65.15,
-      "predicted": 73.7,
+      "predicted": 63.58,
       "tso": 64.99
     },
     {
       "time": "2018-01-11 10:00",
       "actual": 64.87,
-      "predicted": 69.44,
+      "predicted": 65.87,
       "tso": 64.46
     },
     {
       "time": "2018-01-11 11:00",
       "actual": 62.43,
-      "predicted": 62.61,
+      "predicted": 63.33,
       "tso": 62.88
     },
     {
       "time": "2018-01-11 12:00",
       "actual": 61.42,
-      "predicted": 64.11,
+      "predicted": 60.84,
       "tso": 63.28
     },
     {
       "time": "2018-01-11 13:00",
       "actual": 62.09,
-      "predicted": 54.29,
+      "predicted": 55.57,
       "tso": 58.36
     },
     {
       "time": "2018-01-11 14:00",
       "actual": 61.38,
-      "predicted": 62.07,
+      "predicted": 51.92,
       "tso": 54.69
     },
     {
       "time": "2018-01-11 15:00",
       "actual": 61.43,
-      "predicted": 66.65,
+      "predicted": 54.24,
       "tso": 54.49
     },
     {
       "time": "2018-01-11 16:00",
       "actual": 63.9,
-      "predicted": 61.82,
+      "predicted": 56.79,
       "tso": 62.99
     },
     {
       "time": "2018-01-11 17:00",
       "actual": 66.54,
-      "predicted": 63.64,
+      "predicted": 63.43,
       "tso": 70.69
     },
     {
       "time": "2018-01-11 18:00",
       "actual": 67.36,
-      "predicted": 54.43,
+      "predicted": 71.64,
       "tso": 71.28
     },
     {
       "time": "2018-01-11 19:00",
       "actual": 71.2,
-      "predicted": 51.96,
+      "predicted": 76.96,
       "tso": 71.07
     },
     {
       "time": "2018-01-11 20:00",
       "actual": 69.44,
-      "predicted": 66.21,
+      "predicted": 74.78,
       "tso": 69.8
     },
     {
       "time": "2018-01-11 21:00",
       "actual": 63.93,
-      "predicted": 63.92,
+      "predicted": 65.55,
       "tso": 67.64
     },
     {
       "time": "2018-01-11 22:00",
       "actual": 64.0,
-      "predicted": 50.42,
+      "predicted": 59.77,
       "tso": 59.11
     },
     {
       "time": "2018-01-11 23:00",
       "actual": 59.98,
-      "predicted": 43.36,
+      "predicted": 54.11,
       "tso": 67.2
     },
     {
       "time": "2018-01-12 00:00",
       "actual": 53.68,
-      "predicted": 45.4,
+      "predicted": 53.94,
       "tso": 63.34
     },
     {
       "time": "2018-01-12 01:00",
       "actual": 50.61,
-      "predicted": 46.66,
+      "predicted": 49.36,
       "tso": 54.89
     },
     {
       "time": "2018-01-12 02:00",
       "actual": 50.21,
-      "predicted": 47.53,
+      "predicted": 47.25,
       "tso": 55.29
     },
     {
       "time": "2018-01-12 03:00",
       "actual": 50.36,
-      "predicted": 53.88,
+      "predicted": 44.75,
       "tso": 52.01
     },
     {
       "time": "2018-01-12 04:00",
       "actual": 51.59,
-      "predicted": 54.33,
+      "predicted": 44.18,
       "tso": 52.01
     },
     {
       "time": "2018-01-12 05:00",
       "actual": 60.34,
-      "predicted": 58.97,
+      "predicted": 48.36,
       "tso": 55.9
     },
     {
       "time": "2018-01-12 06:00",
       "actual": 65.41,
-      "predicted": 59.51,
+      "predicted": 55.31,
       "tso": 57.0
     },
     {
       "time": "2018-01-12 07:00",
       "actual": 71.96,
-      "predicted": 70.1,
+      "predicted": 57.4,
       "tso": 58.46
     },
     {
       "time": "2018-01-12 08:00",
       "actual": 72.19,
-      "predicted": 72.66,
+      "predicted": 64.1,
       "tso": 63.98
     },
     {
       "time": "2018-01-12 09:00",
       "actual": 73.94,
-      "predicted": 81.57,
+      "predicted": 68.38,
       "tso": 65.1
     },
     {
       "time": "2018-01-12 10:00",
       "actual": 73.1,
-      "predicted": 76.63,
+      "predicted": 72.98,
       "tso": 65.76
     },
     {
       "time": "2018-01-12 11:00",
       "actual": 71.03,
-      "predicted": 78.91,
+      "predicted": 69.11,
       "tso": 64.77
     },
     {
       "time": "2018-01-12 12:00",
       "actual": 69.7,
-      "predicted": 74.82,
+      "predicted": 66.77,
       "tso": 62.76
     },
     {
       "time": "2018-01-12 13:00",
       "actual": 67.72,
-      "predicted": 65.16,
+      "predicted": 62.18,
       "tso": 59.65
     },
     {
       "time": "2018-01-12 14:00",
       "actual": 67.44,
-      "predicted": 70.62,
+      "predicted": 59.42,
       "tso": 55.79
     },
     {
       "time": "2018-01-12 15:00",
       "actual": 67.34,
-      "predicted": 73.32,
+      "predicted": 62.11,
       "tso": 53.14
     },
     {
       "time": "2018-01-12 16:00",
       "actual": 67.82,
-      "predicted": 70.4,
+      "predicted": 61.17,
       "tso": 63.89
     },
     {
       "time": "2018-01-12 17:00",
       "actual": 74.12,
-      "predicted": 80.35,
+      "predicted": 65.09,
       "tso": 67.09
     },
     {
       "time": "2018-01-12 18:00",
       "actual": 74.62,
-      "predicted": 69.11,
+      "predicted": 70.39,
       "tso": 67.03
     },
     {
       "time": "2018-01-12 19:00",
       "actual": 74.41,
-      "predicted": 61.44,
+      "predicted": 73.48,
       "tso": 65.67
     },
     {
       "time": "2018-01-12 20:00",
       "actual": 72.5,
-      "predicted": 66.79,
+      "predicted": 70.56,
       "tso": 65.01
     },
     {
       "time": "2018-01-12 21:00",
       "actual": 69.03,
-      "predicted": 72.18,
+      "predicted": 62.03,
       "tso": 63.65
     },
     {
       "time": "2018-01-12 22:00",
       "actual": 67.13,
-      "predicted": 63.57,
+      "predicted": 58.76,
       "tso": 60.05
     },
     {
       "time": "2018-01-12 23:00",
       "actual": 59.8,
-      "predicted": 54.61,
+      "predicted": 55.46,
       "tso": 56.02
     },
     {
       "time": "2018-01-13 00:00",
       "actual": 52.59,
-      "predicted": 45.92,
+      "predicted": 58.81,
       "tso": 48.14
     },
     {
       "time": "2018-01-13 01:00",
       "actual": 51.04,
-      "predicted": 46.75,
+      "predicted": 51.81,
       "tso": 46.6
     },
     {
       "time": "2018-01-13 02:00",
       "actual": 50.58,
-      "predicted": 49.1,
+      "predicted": 48.04,
       "tso": 46.1
     },
     {
       "time": "2018-01-13 03:00",
       "actual": 50.61,
-      "predicted": 55.4,
+      "predicted": 43.22,
       "tso": 46.2
     },
     {
       "time": "2018-01-13 04:00",
       "actual": 50.94,
-      "predicted": 62.1,
+      "predicted": 40.81,
       "tso": 46.6
     },
     {
       "time": "2018-01-13 05:00",
       "actual": 51.55,
-      "predicted": 45.78,
+      "predicted": 41.67,
       "tso": 47.13
     },
     {
       "time": "2018-01-13 06:00",
       "actual": 54.16,
-      "predicted": 58.0,
+      "predicted": 46.16,
       "tso": 50.05
     },
     {
       "time": "2018-01-13 07:00",
       "actual": 55.8,
-      "predicted": 67.39,
+      "predicted": 48.11,
       "tso": 50.98
     },
     {
       "time": "2018-01-13 08:00",
       "actual": 62.3,
-      "predicted": 77.62,
+      "predicted": 55.58,
       "tso": 58.16
     },
     {
       "time": "2018-01-13 09:00",
       "actual": 64.72,
-      "predicted": 76.16,
+      "predicted": 61.64,
       "tso": 60.76
     },
     {
       "time": "2018-01-13 10:00",
       "actual": 64.52,
-      "predicted": 76.21,
+      "predicted": 65.99,
       "tso": 60.5
     },
     {
       "time": "2018-01-13 11:00",
       "actual": 63.71,
-      "predicted": 85.15,
+      "predicted": 63.89,
       "tso": 59.5
     },
     {
       "time": "2018-01-13 12:00",
       "actual": 63.45,
-      "predicted": 88.48,
+      "predicted": 61.85,
       "tso": 59.07
     },
     {
       "time": "2018-01-13 13:00",
       "actual": 62.97,
-      "predicted": 77.44,
+      "predicted": 58.16,
       "tso": 58.7
     },
     {
       "time": "2018-01-13 14:00",
       "actual": 60.04,
-      "predicted": 87.04,
+      "predicted": 55.22,
       "tso": 55.57
     },
     {
       "time": "2018-01-13 15:00",
       "actual": 59.55,
-      "predicted": 87.5,
+      "predicted": 57.56,
       "tso": 54.99
     },
     {
       "time": "2018-01-13 16:00",
       "actual": 60.63,
-      "predicted": 84.6,
+      "predicted": 58.88,
       "tso": 56.01
     },
     {
       "time": "2018-01-13 17:00",
       "actual": 66.62,
-      "predicted": 75.23,
+      "predicted": 65.73,
       "tso": 61.0
     },
     {
       "time": "2018-01-13 18:00",
       "actual": 67.23,
-      "predicted": 70.26,
+      "predicted": 70.52,
       "tso": 61.97
     },
     {
       "time": "2018-01-13 19:00",
       "actual": 69.09,
-      "predicted": 68.49,
+      "predicted": 72.59,
       "tso": 63.82
     },
     {
       "time": "2018-01-13 20:00",
       "actual": 67.45,
-      "predicted": 64.63,
+      "predicted": 71.71,
       "tso": 62.11
     },
     {
       "time": "2018-01-13 21:00",
       "actual": 64.01,
-      "predicted": 63.49,
+      "predicted": 64.15,
       "tso": 59.54
     },
     {
       "time": "2018-01-13 22:00",
       "actual": 62.73,
-      "predicted": 58.88,
+      "predicted": 60.66,
       "tso": 58.15
     },
     {
       "time": "2018-01-13 23:00",
       "actual": 53.24,
-      "predicted": 58.7,
+      "predicted": 55.95,
       "tso": 48.7
     },
     {
       "time": "2018-01-14 00:00",
       "actual": 49.7,
-      "predicted": 47.55,
+      "predicted": 56.67,
       "tso": 45.27
     },
     {
       "time": "2018-01-14 01:00",
       "actual": 48.46,
-      "predicted": 42.83,
+      "predicted": 53.19,
       "tso": 43.92
     },
     {
       "time": "2018-01-14 02:00",
       "actual": 47.12,
-      "predicted": 50.25,
+      "predicted": 49.72,
       "tso": 42.1
     },
     {
       "time": "2018-01-14 03:00",
       "actual": 47.08,
-      "predicted": 58.21,
+      "predicted": 47.09,
       "tso": 42.09
     },
     {
       "time": "2018-01-14 04:00",
       "actual": 46.93,
-      "predicted": 59.99,
+      "predicted": 44.4,
       "tso": 42.1
     },
     {
       "time": "2018-01-14 05:00",
       "actual": 48.79,
-      "predicted": 62.92,
+      "predicted": 46.45,
       "tso": 43.92
     },
     {
       "time": "2018-01-14 06:00",
       "actual": 49.89,
-      "predicted": 71.74,
+      "predicted": 49.83,
       "tso": 45.01
     },
     {
       "time": "2018-01-14 07:00",
       "actual": 50.59,
-      "predicted": 73.59,
+      "predicted": 55.74,
       "tso": 45.21
     },
     {
       "time": "2018-01-14 08:00",
       "actual": 53.33,
-      "predicted": 77.77,
+      "predicted": 56.97,
       "tso": 47.66
     },
     {
       "time": "2018-01-14 09:00",
       "actual": 58.9,
-      "predicted": 83.66,
+      "predicted": 59.68,
       "tso": 53.9
     },
     {
       "time": "2018-01-14 10:00",
       "actual": 59.48,
-      "predicted": 83.22,
+      "predicted": 66.25,
       "tso": 54.8
     },
     {
       "time": "2018-01-14 11:00",
       "actual": 59.72,
-      "predicted": 77.28,
+      "predicted": 63.17,
       "tso": 54.8
     },
     {
       "time": "2018-01-14 12:00",
       "actual": 62.95,
-      "predicted": 79.3,
+      "predicted": 65.19,
       "tso": 58.11
     },
     {
       "time": "2018-01-14 13:00",
       "actual": 63.42,
-      "predicted": 76.35,
+      "predicted": 59.69,
       "tso": 58.53
     },
     {
       "time": "2018-01-14 14:00",
       "actual": 58.78,
-      "predicted": 82.99,
+      "predicted": 55.99,
       "tso": 53.9
     },
     {
       "time": "2018-01-14 15:00",
       "actual": 58.03,
-      "predicted": 82.66,
+      "predicted": 59.73,
       "tso": 53.15
     },
     {
       "time": "2018-01-14 16:00",
       "actual": 59.82,
-      "predicted": 86.37,
+      "predicted": 60.73,
       "tso": 54.8
     },
     {
       "time": "2018-01-14 17:00",
       "actual": 66.87,
-      "predicted": 81.13,
+      "predicted": 67.19,
       "tso": 60.82
     },
     {
       "time": "2018-01-14 18:00",
       "actual": 70.72,
-      "predicted": 66.76,
+      "predicted": 72.97,
       "tso": 64.97
     },
     {
       "time": "2018-01-14 19:00",
       "actual": 73.12,
-      "predicted": 64.19,
+      "predicted": 77.44,
       "tso": 67.19
     },
     {
       "time": "2018-01-14 20:00",
       "actual": 73.72,
-      "predicted": 63.34,
+      "predicted": 76.27,
       "tso": 67.92
     },
     {
       "time": "2018-01-14 21:00",
       "actual": 70.92,
-      "predicted": 65.97,
+      "predicted": 68.12,
       "tso": 66.01
     },
     {
       "time": "2018-01-14 22:00",
       "actual": 66.46,
-      "predicted": 60.18,
+      "predicted": 64.89,
       "tso": 61.24
     },
     {
       "time": "2018-01-14 23:00",
       "actual": 64.88,
-      "predicted": 60.01,
+      "predicted": 60.79,
       "tso": 60.82
     },
     {
       "time": "2018-01-15 00:00",
       "actual": 57.73,
-      "predicted": 54.65,
+      "predicted": 56.67,
       "tso": 53.6
     },
     {
       "time": "2018-01-15 01:00",
       "actual": 51.82,
-      "predicted": 53.87,
+      "predicted": 52.79,
       "tso": 47.66
     },
     {
       "time": "2018-01-15 02:00",
       "actual": 50.38,
-      "predicted": 58.67,
+      "predicted": 50.64,
       "tso": 46.14
     },
     {
       "time": "2018-01-15 03:00",
       "actual": 49.88,
-      "predicted": 64.83,
+      "predicted": 49.46,
       "tso": 45.69
     },
     {
       "time": "2018-01-15 04:00",
       "actual": 51.18,
-      "predicted": 63.88,
+      "predicted": 51.53,
       "tso": 47.13
     },
     {
       "time": "2018-01-15 05:00",
       "actual": 59.49,
-      "predicted": 67.98,
+      "predicted": 56.88,
       "tso": 55.55
     },
     {
       "time": "2018-01-15 06:00",
       "actual": 64.55,
-      "predicted": 73.37,
+      "predicted": 64.08,
       "tso": 60.9
     },
     {
       "time": "2018-01-15 07:00",
       "actual": 71.3,
-      "predicted": 70.86,
+      "predicted": 69.35,
       "tso": 64.99
     },
     {
       "time": "2018-01-15 08:00",
       "actual": 72.18,
-      "predicted": 78.43,
+      "predicted": 70.45,
       "tso": 66.01
     },
     {
       "time": "2018-01-15 09:00",
       "actual": 72.45,
-      "predicted": 77.52,
+      "predicted": 72.79,
       "tso": 65.03
     },
     {
       "time": "2018-01-15 10:00",
       "actual": 70.06,
-      "predicted": 72.0,
+      "predicted": 77.43,
       "tso": 62.07
     },
     {
       "time": "2018-01-15 11:00",
       "actual": 68.24,
-      "predicted": 79.66,
+      "predicted": 71.84,
       "tso": 61.01
     },
     {
       "time": "2018-01-15 12:00",
       "actual": 66.89,
-      "predicted": 76.43,
+      "predicted": 68.66,
       "tso": 60.9
     },
     {
       "time": "2018-01-15 13:00",
       "actual": 64.55,
-      "predicted": 79.62,
+      "predicted": 63.51,
       "tso": 58.7
     },
     {
       "time": "2018-01-15 14:00",
       "actual": 63.57,
-      "predicted": 75.33,
+      "predicted": 59.44,
       "tso": 57.83
     },
     {
       "time": "2018-01-15 15:00",
       "actual": 61.81,
-      "predicted": 72.66,
+      "predicted": 62.2,
       "tso": 56.0
     },
     {
       "time": "2018-01-15 16:00",
       "actual": 63.78,
-      "predicted": 79.15,
+      "predicted": 61.63,
       "tso": 57.83
     },
     {
       "time": "2018-01-15 17:00",
       "actual": 69.68,
-      "predicted": 82.26,
+      "predicted": 67.19,
       "tso": 61.59
     },
     {
       "time": "2018-01-15 18:00",
       "actual": 71.95,
-      "predicted": 84.4,
+      "predicted": 72.05,
       "tso": 64.28
     },
     {
       "time": "2018-01-15 19:00",
       "actual": 72.82,
-      "predicted": 66.66,
+      "predicted": 75.22,
       "tso": 65.23
     },
     {
       "time": "2018-01-15 20:00",
       "actual": 69.11,
-      "predicted": 66.27,
+      "predicted": 70.73,
       "tso": 62.4
     },
     {
       "time": "2018-01-15 21:00",
       "actual": 64.34,
-      "predicted": 65.65,
+      "predicted": 63.73,
       "tso": 58.15
     },
     {
       "time": "2018-01-15 22:00",
       "actual": 58.57,
-      "predicted": 54.56,
+      "predicted": 57.17,
       "tso": 52.32
     },
     {
       "time": "2018-01-15 23:00",
       "actual": 48.94,
-      "predicted": 43.43,
+      "predicted": 53.95,
       "tso": 44.5
     },
     {
       "time": "2018-01-16 00:00",
       "actual": 45.15,
-      "predicted": 46.96,
+      "predicted": 50.52,
       "tso": 41.3
     },
     {
       "time": "2018-01-16 01:00",
       "actual": 42.74,
-      "predicted": 44.58,
+      "predicted": 44.76,
       "tso": 38.0
     },
     {
       "time": "2018-01-16 02:00",
       "actual": 40.14,
-      "predicted": 45.64,
+      "predicted": 43.07,
       "tso": 35.1
     },
     {
       "time": "2018-01-16 03:00",
       "actual": 39.17,
-      "predicted": 41.14,
+      "predicted": 41.58,
       "tso": 35.1
     },
     {
       "time": "2018-01-16 04:00",
       "actual": 43.36,
-      "predicted": 51.13,
+      "predicted": 45.01,
       "tso": 39.1
     },
     {
       "time": "2018-01-16 05:00",
       "actual": 48.05,
-      "predicted": 51.92,
+      "predicted": 51.54,
       "tso": 43.03
     },
     {
       "time": "2018-01-16 06:00",
       "actual": 56.06,
-      "predicted": 55.11,
+      "predicted": 60.68,
       "tso": 51.89
     },
     {
       "time": "2018-01-16 07:00",
       "actual": 66.83,
-      "predicted": 57.23,
+      "predicted": 70.89,
       "tso": 60.82
     },
     {
       "time": "2018-01-16 08:00",
       "actual": 69.15,
-      "predicted": 65.54,
+      "predicted": 70.04,
       "tso": 63.45
     },
     {
       "time": "2018-01-16 09:00",
       "actual": 69.03,
-      "predicted": 69.97,
+      "predicted": 75.13,
       "tso": 61.99
     },
     {
       "time": "2018-01-16 10:00",
       "actual": 67.35,
-      "predicted": 66.05,
+      "predicted": 75.61,
       "tso": 60.32
     },
     {
       "time": "2018-01-16 11:00",
       "actual": 65.43,
-      "predicted": 67.41,
+      "predicted": 70.15,
       "tso": 58.03
     },
     {
       "time": "2018-01-16 12:00",
       "actual": 62.54,
-      "predicted": 65.08,
+      "predicted": 68.84,
       "tso": 56.16
     },
     {
       "time": "2018-01-16 13:00",
       "actual": 61.29,
-      "predicted": 57.72,
+      "predicted": 63.02,
       "tso": 54.5
     },
     {
       "time": "2018-01-16 14:00",
       "actual": 58.83,
-      "predicted": 61.59,
+      "predicted": 58.82,
       "tso": 51.95
     },
     {
       "time": "2018-01-16 15:00",
       "actual": 56.12,
-      "predicted": 59.19,
+      "predicted": 64.1,
       "tso": 49.43
     },
     {
       "time": "2018-01-16 16:00",
       "actual": 59.2,
-      "predicted": 68.16,
+      "predicted": 63.57,
       "tso": 52.1
     },
     {
       "time": "2018-01-16 17:00",
       "actual": 68.0,
-      "predicted": 74.48,
+      "predicted": 69.57,
       "tso": 59.02
     },
     {
       "time": "2018-01-16 18:00",
       "actual": 69.79,
-      "predicted": 77.95,
+      "predicted": 77.05,
       "tso": 61.59
     },
     {
       "time": "2018-01-16 19:00",
       "actual": 71.4,
-      "predicted": 71.83,
+      "predicted": 78.85,
       "tso": 63.45
     },
     {
       "time": "2018-01-16 20:00",
       "actual": 68.58,
-      "predicted": 74.34,
+      "predicted": 74.53,
       "tso": 61.59
     },
     {
       "time": "2018-01-16 21:00",
       "actual": 59.42,
-      "predicted": 58.06,
+      "predicted": 66.42,
       "tso": 52.69
     },
     {
       "time": "2018-01-16 22:00",
       "actual": 52.75,
-      "predicted": 54.53,
+      "predicted": 58.62,
       "tso": 45.27
     },
     {
       "time": "2018-01-16 23:00",
       "actual": 47.32,
-      "predicted": 45.71,
+      "predicted": 54.97,
       "tso": 42.64
     }
   ]
