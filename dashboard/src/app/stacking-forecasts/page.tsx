@@ -1,11 +1,14 @@
 import Nav from "../components/Nav";
 import TFTChart from "../components/TFTChart";
 
+import windData from "../../../public/data/stacking_wind_onshore.json";
 import solarData from "../../../public/data/stacking_solar.json";
+import loadData from "../../../public/data/stacking_load.json";
+import residualData from "../../../public/data/stacking_residual_load.json";
 import priceData from "../../../public/data/stacking_price.json";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const datasets = [solarData, priceData] as any[];
+const datasets = [windData, solarData, loadData, residualData, priceData] as any[];
 
 export default function StackingForecasts() {
   return (
@@ -30,8 +33,9 @@ export default function StackingForecasts() {
             </h2>
             <p className="text-gray-400">
               Per-horizon stacking with 5-fold temporal CV. Four tabular base
-              models (XGBoost, LightGBM, Ridge, Random Forest) + TSO + PatchTST
-              predictions fed into a Ridge meta-learner.
+              models (XGBoost, LightGBM, Ridge, Random Forest) + TSO fed into a
+              Ridge meta-learner. Solar &amp; price also include PatchTST
+              predictions as an additional meta-feature.
             </p>
           </div>
 
