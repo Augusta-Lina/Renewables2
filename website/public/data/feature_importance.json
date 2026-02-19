@@ -1,0 +1,134 @@
+{
+  "demand": {
+    "r2": 0.56,
+    "features": [
+      {
+        "feature": "humidity_valencia",
+        "importance": 0.1205
+      },
+      {
+        "feature": "humidity_bilbao",
+        "importance": 0.056
+      },
+      {
+        "feature": "temp_barcelona",
+        "importance": 0.0503
+      },
+      {
+        "feature": "humidity_seville",
+        "importance": 0.0374
+      },
+      {
+        "feature": "humidity_barcelona",
+        "importance": 0.0374
+      },
+      {
+        "feature": "wind_deg_barcelona",
+        "importance": 0.0352
+      },
+      {
+        "feature": "wind_deg_seville",
+        "importance": 0.0278
+      }
+    ]
+  },
+  "price": {
+    "r2": 0.64,
+    "features": [
+      {
+        "feature": "pressure_barcelona",
+        "importance": 0.0902
+      },
+      {
+        "feature": "temp_max_seville",
+        "importance": 0.0549
+      },
+      {
+        "feature": "temp_min_valencia",
+        "importance": 0.0524
+      },
+      {
+        "feature": "pressure_bilbao",
+        "importance": 0.0388
+      },
+      {
+        "feature": "pressure_seville",
+        "importance": 0.0379
+      },
+      {
+        "feature": "humidity_valencia",
+        "importance": 0.0348
+      },
+      {
+        "feature": "wind_speed_madrid",
+        "importance": 0.0308
+      }
+    ]
+  },
+  "wind_onshore": {
+    "r2": 0.581,
+    "features": [
+      {
+        "feature": "wind_speed_madrid",
+        "importance": 0.0863
+      },
+      {
+        "feature": "pressure_bilbao",
+        "importance": 0.053
+      },
+      {
+        "feature": "pressure_barcelona",
+        "importance": 0.0443
+      },
+      {
+        "feature": "pressure_seville",
+        "importance": 0.0406
+      },
+      {
+        "feature": "humidity_valencia",
+        "importance": 0.0373
+      },
+      {
+        "feature": "temp_max_barcelona",
+        "importance": 0.0323
+      },
+      {
+        "feature": "pressure_madrid",
+        "importance": 0.03
+      }
+    ]
+  },
+  "residual_load": {
+    "r2": 0.493,
+    "features": [
+      {
+        "feature": "pressure_bilbao",
+        "importance": 0.0399
+      },
+      {
+        "feature": "humidity_valencia",
+        "importance": 0.0372
+      },
+      {
+        "feature": "wind_deg_valencia",
+        "importance": 0.0369
+      },
+      {
+        "feature": "temp_barcelona",
+        "importance": 0.0362
+      },
+      {
+        "feature": "pressure_barcelona",
+        "importance": 0.0341
+      },
+      {
+        "feature": "humidity_bilbao",
+        "importance": 0.0324
+      },
+      {
+        "feature": "clouds_all_bilbao",
+        "importance": 0.0323
+      }
+    ]
+  }
+}

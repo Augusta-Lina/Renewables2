@@ -4,6 +4,16 @@ Key versions of this project, listed newest-first. Use `git checkout <hash>` to 
 
 ---
 
+### v5 — Presentation Website
+- **Commit:** `0a8dbff`
+- **Date:** 2026-02-19
+- **What:** Separate Next.js presentation website (`website/`) showing only the best model per target (Stacking Ensemble). Sidebar navigation, date range selector (day/week/month/year), dark theme. Full-year test data (8,736 hours) for all 5 targets. Deployed to Vercel.
+- **URL:** https://website-mu-cyan-20.vercel.app
+- **Key files:** `notebooks/export_website_data.py`, `website/`
+- **Pages:** Home, Feature Importance, Generation (Solar + Wind), Demand (Load + Residual), Price
+
+---
+
 ### v4 — Stacking Ensemble (All 5 Targets)
 - **Commit:** `2a9db68`
 - **Date:** 2026-02-19
