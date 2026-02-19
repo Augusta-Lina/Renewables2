@@ -1,4 +1,4 @@
-# Project Milestones
+# Version Control Directory
 
 Key versions of this project, listed newest-first. Use `git checkout <hash>` to return to any milestone.
 
