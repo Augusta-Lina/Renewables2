@@ -41,10 +41,12 @@ function formatFeatureName(name: string): string {
 
 function Chart({
   data,
+  r2,
   color,
   title,
 }: {
   data: FeatureEntry[];
+  r2: number;
   color: string;
   title: string;
 }) {
@@ -54,22 +56,25 @@ function Chart({
   }));
 
   return (
-    <div className="bg-white/6 backdrop-blur-xl rounded-2xl border border-white/12 p-4 sm:p-6">
-      <h3 className="font-serif text-lg sm:text-xl text-white mb-3">{title}</h3>
+    <div className="bg-sand-light rounded-lg border-2 border-bark p-4 sm:p-6">
+      <h3 className="font-serif text-lg sm:text-xl text-bark">{title}</h3>
+      <p className="text-sm text-bark-light mb-3">
+        R² = {r2} — weather explains {Math.round(r2 * 100)}% of variance
+      </p>
       <ResponsiveContainer width="100%" height={280}>
         <BarChart data={formatted} layout="vertical" margin={{ left: 10, right: 10, top: 5, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
-          <XAxis type="number" tick={{ fill: "rgba(255,255,255,0.5)", fontSize: 11 }} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#e8e0cc" />
+          <XAxis type="number" tick={{ fill: "#5a5247", fontSize: 11 }} />
           <YAxis
             dataKey="label"
             type="category"
-            tick={{ fill: "rgba(255,255,255,0.5)", fontSize: 10 }}
+            tick={{ fill: "#5a5247", fontSize: 10 }}
             width={120}
           />
           <Tooltip
-            contentStyle={{ backgroundColor: "rgba(17,7,2,0.9)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "12px", backdropFilter: "blur(12px)" }}
-            labelStyle={{ color: "rgba(255,255,255,0.8)", fontWeight: 600 }}
-            itemStyle={{ color: "rgba(255,255,255,0.7)" }}
+            contentStyle={{ backgroundColor: "#f5ead8", border: "2px solid #4a2518", borderRadius: "8px" }}
+            labelStyle={{ color: "#1a1a1a", fontWeight: 600 }}
+            itemStyle={{ color: "#5a5247" }}
           />
           <Bar dataKey="importance" fill={color} radius={[0, 4, 4, 0]} />
         </BarChart>
@@ -81,11 +86,20 @@ function Chart({
 export default function FeatureImportance({ data }: { data: FeatureData }) {
   return (
     <section className="space-y-6">
+      <div>
+        <h2 className="font-serif text-2xl sm:text-3xl text-bark mb-1">
+          Feature Importance
+        </h2>
+        <p className="text-bark-light">
+          Random Forest — top 7 weather features per target (80/20 train/test split)
+        </p>
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {(Object.keys(LABELS) as Array<keyof FeatureData>).map((key) => (
           <Chart
             key={key}
             data={data[key].features}
+            r2={data[key].r2}
             color={COLORS[key]}
             title={LABELS[key]}
           />
